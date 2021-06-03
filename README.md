@@ -16,14 +16,3 @@
 # GNU General Public License. See the file `License'
 # in the root directory of the present distribution,
 # or http://www.gnu.org/copyleft/gpl.txt .
-#
-
-import numpy as np
-from mpi4py import MPI
-
-from .do_atwfc_proj import *
-from .write2xsf import write2xsf
-from .communication import load_balancing
-
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
