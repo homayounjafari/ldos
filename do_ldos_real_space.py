@@ -47,7 +47,7 @@ def do_dos ( data_controller, emin, emax, ne, delta ):
     E_k = arry['E_k'][:,:bnd,ispin]
 
     for n in range(ne):
-      dosaux[n] = np.sum(np.exp(-((ene[n]-E_k)/delta)**2))
+      dosaux[n] = np.sum(np.exp(-((ene[n]-E_k)/delta)**2)) # this should be multiplied by squared atwfcr (line 90)
 
     dos = np.zeros((ne), dtype=float) if rank == 0 else None
 
@@ -61,8 +61,8 @@ def do_dos ( data_controller, emin, emax, ne, delta ):
     data_controller.write_file_row_col(fdos, ene, dos)
     data_controller.broadcast_single_array('dos', dtype=float)
     
-# charge density part    
-    def do_density ( data_controller, nr1, nr2, nr3, internal=False):
+# charge density part
+def do_density ( data_controller, nr1, nr2, nr3, internal=False):
 
   arry,attr = data_controller.data_dicts()
 
